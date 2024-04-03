@@ -1,47 +1,24 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-<<<<<<< Updated upstream
+using static Spawner;
+
 
 public class Spawner : MonoBehaviour
 {
-    [SerializeField]
-    List<GameObject> enemyPrefabs;
 
     [SerializeField]
     private float speedInterval;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        StartCoroutine(SpawnEnemyRoutine());
-    }
-
-    private IEnumerator SpawnEnemyRoutine()
-    {
-        while (true)
-        {
-            yield return new WaitForSeconds(speedInterval);
-            SpawnEnemy();
-        }
-    }
-
-    private void SpawnEnemy()
-    {
-        GameObject randomPrefab = enemyPrefabs[Random.Range(0, enemyPrefabs.Count)];
-        Instantiate(randomPrefab, transform.position, Quaternion.identity);
-=======
-using static Spawner;
-
-public class Spawner : MonoBehaviour
-{
     [SerializeField] private List<SpawnData> enemyPrefabs;
 
     public void SpawnEnemy()
     {
-        var randomPrefab = GetRandomEnemy();
-        Instantiate(randomPrefab,transform.position,Quaternion.identity);
+        GameObject randomPrefab = GetRandomEnemy();
+        Instantiate(randomPrefab, transform.position, Quaternion.identity);
     }
+
+
     public void SpawnBoss()
     {
         foreach (SpawnData a in enemyPrefabs)
@@ -49,6 +26,7 @@ public class Spawner : MonoBehaviour
             if (a.boss)
             {
                 Instantiate(a.enemy, transform.position, Quaternion.identity);
+                break;
             }
         }
  
@@ -76,6 +54,5 @@ public class Spawner : MonoBehaviour
         public GameObject enemy;
         public float probability;
         public bool boss;
->>>>>>> Stashed changes
     }
 }

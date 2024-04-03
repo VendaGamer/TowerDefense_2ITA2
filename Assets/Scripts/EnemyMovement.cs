@@ -14,10 +14,6 @@ public class EnemyMovement : MonoBehaviour
     {
         var direction = currentWaypoint.position - transform.position;
         var movement = direction.normalized * speed * Time.deltaTime;
-<<<<<<< Updated upstream
-
-=======
->>>>>>> Stashed changes
         currentAttackInterval -= Time.deltaTime;
 
         if (currentAttackInterval<=0)
